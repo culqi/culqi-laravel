@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends BaseVerifier
 {
@@ -11,7 +12,9 @@ class VerifyCsrfToken extends BaseVerifier
      *
      * @var array
      */
-    protected $except = [
-        //
-    ];
+    protected $except = ['tarjeta'];
+        
+  
+ 
+   
 }

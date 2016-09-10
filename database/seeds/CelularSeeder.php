@@ -12,17 +12,22 @@ class CelularSeeder extends Seeder
     public function run()
     {
         DB::table('celular')->insert([
-            'titulo' => 'moto x',
-            'descripcion' => 'De google para googleros',
-            'precio' => 555,
+            'titulo' => 'G5 SE',
+            'descripcion' => 'Dale un aire de frescura a tu comunicación con un smartphone de grandes cualidades.',
+            'precio' => 655,
         ]);
 
         DB::table('celular')->insert([
-            'titulo' => 'Samsung 2341',
-            'descripcion' => 'De google para googleros',
-            'precio' => 355,
+            'titulo' => 'Galaxy A7',
+            'descripcion' => 'Samsung se reinventa para dar más poder a tu comunicación con el nuevo Samsung Galaxy A7.',
+            'precio' => 599,
         ]);
 
+        DB::table('celular')->insert([
+            'titulo' => 'Xperia Z5',
+            'descripcion' => 'Si siempre buscas mejorar la calidad de tus selfies, con la ayuda del Xperia Z5 lo podrás conseguir.',
+            'precio' => 399,
+        ]);
 
 
     }
