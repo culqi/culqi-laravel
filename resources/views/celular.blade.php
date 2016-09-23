@@ -14,7 +14,7 @@
        
             <table class="table table-bordered">
             <div class="row">
-              <div class="col-sm-6 col-md-4">
+              <div class=" col-md-6">
                 <div class="thumbnail">
                  <!-- <img src="..." alt="..."> -->
                   <div class="caption">
@@ -22,6 +22,8 @@
                     <p>${{ round($celular->precio) }}</p>
                     <p>{{ $celular->descripcion }}</p>
                     <p><a  id="miBoton" class="btn btn-primary"  class="btn btn-primary" role="button">Pagar</a> </p>
+                    Acepto los <a href="#">términos y condiciones </a><input type="checkbox" id="check"/>
+                 
                   </div>
                 </div>
               </div>
@@ -57,11 +59,18 @@
         });
     </script> 
     <script>
+        
         $('#miBoton').on('click', function (e) {
-            // Abre el formulario con las opciones de Culqi.configurar
-            Culqi.abrir();
-            e.preventDefault();
-        });
+            
+            if($("#check").is(':checked')){
+                // Abre el formulario con las opciones de Culqi.configurar
+                Culqi.abrir();
+                e.preventDefault();
+            }else{
+                alert('acepta los terminos y condiciones.')
+            }
+                
+            });
     </script>
     <script>  
     // Ejemplo: Tratando respuesta con AJAX (jQuery)
@@ -74,14 +83,17 @@
            alert("Culqi.error.mensaje");
         }
         else{
+           console.log(Culqi.token.id);
+           
            $.post("../tarjeta", // Ruta hacia donde enviaremos el token vía POST
             {token: Culqi.token.id},
             function(data, status){
-                if (data=='ok') {
-                    alert('Pago realizado con éxito!');
-                } else {
-                    alert('Error');
-                }
+                alert(data);
+                // if (data=='ok') {
+                //     alert('Pago realizado con éxito!');
+                // } else {
+                //     alert(data);
+                // }
             });
            }
     };
