@@ -49,7 +49,8 @@ Route::post('tarjeta', function(Request $request){
     
         // Autenticación
         $culqi = new Culqi(array('api_key' => $SECRET_API_KEY));
-    
+        $culqi->setEnv("INTEG");
+        
         try{
             // Creamos Cargo a una tarjeta
             $cargo = $culqi->Cargos->create(
