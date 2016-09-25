@@ -54,7 +54,7 @@
             orden: '{{$celular->id}}', 
             moneda: 'PEN',
             descripcion: '{{$celular->descripcion}}',
-            monto: {{$celular->precio}},
+            monto: {{$celular->precio*100}},
             guardar:false
         });
     </script> 
@@ -86,14 +86,23 @@
            console.log(Culqi.token.id);
            
            $.post("../tarjeta", // Ruta hacia donde enviaremos el token vía POST
-            {token: Culqi.token.id},
+            {token: Culqi.token.id, id_producto:{{$celular->id}}},
             function(data, status){
-                alert(data);
-                // if (data=='ok') {
-                //     alert('Pago realizado con éxito!');
-                // } else {
-                //     alert(data);
-                // }
+                console.log(data);
+                
+                data=JSON.parse(data); //convertir data a objeto js
+                
+                console.log(data);
+                
+                if(data.objeto=="cargo"){
+                    alert("Cargo realizado exitosamente");
+                }else{
+                    data=JSON.parse(data); //convertir data a objeto js
+                    console.log(data);
+                    alert(data.error_mensaje_usuario);
+                }
+                
+            //capturando json
             });
            }
     };

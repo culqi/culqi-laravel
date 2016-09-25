@@ -16,7 +16,11 @@ use Illuminate\Http\Request;
 use Culqi\Culqi;
 use Culqi\CulqiException;
 
-
+Route::get('/test', function(){
+   $celular=Celular::find(1);
+   return $celular->precio*100;
+    
+});
 
 Route::get('/', function(){
     $celulares = Celular::all();
@@ -34,6 +38,9 @@ Route::get('/comprar/{id}', function($id){
 Route::post('tarjeta', function(Request $request){
     
     $token=$request->input('token');
+    $id_producto=$request->input('id_producto');
+    
+    $celular=Celular::find($id_producto);
     
     if($token){
         
@@ -49,11 +56,11 @@ Route::post('tarjeta', function(Request $request){
                 array(
                     "token"=> $token,
                     "moneda"=> "PEN",
-                    "monto"=> 19900,
-                    "descripcion"=> "Venta de prueba",
+                    "monto"=> $celular->precio*100,
+                    "descripcion"=> 'Dale un aire de frescura a tu comunicación con un smartphone.',
                     "pedido"=> rand(),
                     "codigo_pais"=> "PE",
-                    "ciudad"=> "Lima",
+                    "ciudad"=> "Lima",  
                     "usuario"=> "71701956",
                     "direccion"=> "Avenida Lima 1232",
                     "telefono"=> 12313123,
@@ -62,14 +69,14 @@ Route::post('tarjeta', function(Request $request){
                     "correo_electronico"=> "stephan.vargas@culqi.com"
                 )
             );
+            return json_encode($cargo);
             
-            
-        } catch(CulqiException $e){
+        } catch(Exception $e){
   
-          $cargo= "API error: " . htmlspecialchars($e->getMessage());
-          break;
-        } finally {
-            echo 'hola';
+          $cargo= $e->getMessage();
+          
+          return json_encode($cargo);
+          
         }
         
         
