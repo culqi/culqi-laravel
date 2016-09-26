@@ -90,19 +90,19 @@
             function(data, status){
                 console.log(data);
                 
-                data=JSON.parse(data); //convertir data a objeto js
+                data=JSON.parse(data); //convertir data json a objeto js
                 
                 console.log(data);
                 
                 if(data.objeto=="cargo"){
                     alert("Cargo realizado exitosamente");
                 }else{
-                    data=JSON.parse(data); //convertir data a objeto js
+                   
                     console.log(data);
-                    alert(data.error_mensaje_usuario);
+                    alert(data.mensaje_usuario);
                 }
                 
-            //capturando json
+      
             });
            }
     };

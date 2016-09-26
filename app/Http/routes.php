@@ -59,7 +59,7 @@ Route::post('tarjeta', function(Request $request){
                     "moneda"=> "PEN",
                     "monto"=> $celular->precio*100,
                     "descripcion"=> 'Dale un aire de frescura a tu comunicación con un smartphone.',
-                    "pedido"=> rand(),
+                    "pedido"=> time(),
                     "codigo_pais"=> "PE",
                     "ciudad"=> "Lima",  
                     "usuario"=> "71701956",
@@ -74,9 +74,9 @@ Route::post('tarjeta', function(Request $request){
             
         } catch(Exception $e){
   
-          $cargo= $e->getMessage();
+          $cargo2= $e->getMessage();
           
-          return json_encode($cargo);
+          return $cargo2;
           
         }
         
